@@ -1,5 +1,5 @@
 import { ENDPOINTS } from "../constants/endpoints";
-import type { Product } from "../type/product";
+import type { addProductType } from "../schema/product";
 
 export const productService = {
   getAll: async () => {
@@ -34,7 +34,7 @@ export const productService = {
     return await response.json();
   },
 
-   addProduct: async (data: Product) => {
+   addProduct: async (data: addProductType) => {
     const response = await fetch(
       ENDPOINTS.PRODUCTS.GET_ALL,
       {

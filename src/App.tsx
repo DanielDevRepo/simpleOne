@@ -3,10 +3,12 @@ import { useEffect, useMemo, useState
 
 import { useProducts } from './hook/useProducts';
 import { Categories, type Category, type Nullable, type Product } from './type/product';
-import { Dialog } from '@mui/material';
+import { Button } from '@mui/material';
+import AddProductDialog from './feature/addProduct';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<Category | "All">("All");
+  const [openDialog, setOpenDialog] = useState(false);
   const {products, getList} = useProducts();
 
   const memoProducts: Nullable<Product>[] = useMemo(() => products, [products]);
@@ -27,6 +29,7 @@ function App() {
   return (
     <>
       <div className="min-h-screen bg-gray-100 p-6">
+        <Button onClick={() => setOpenDialog(true)}>Add Product</Button>
         <aside className="filters-container">
             <div className='category'>
             <select
@@ -66,9 +69,7 @@ function App() {
           </ul>
         </div>
       </div>
-
-      
-
+      <AddProductDialog open={openDialog} setOpenDialog={setOpenDialog}/>
     </>
   )
 }

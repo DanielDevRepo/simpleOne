@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import { productService } from "../services/product";
-import type { Product } from "../type/product";
+import type { addProductType } from "../schema/product";
 
 export function useProducts() {
     const [products, setProducts] = useState ([]);
@@ -34,7 +34,7 @@ export function useProducts() {
         }
     },[])
 
-    const addProduct = useCallback(async(data: Product) =>{
+    const addProduct = useCallback(async(data: addProductType) =>{
         setLoadings((l) => ({ ...l, addingProduct: true }));
         try{
             const product  = await productService.addProduct(data);
